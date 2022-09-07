@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kiwi_mobile/shared/theme.dart';
+import 'package:kiwi_mobile/view/guest/home_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,10 +14,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: lightBackgroundColor,
         appBarTheme: AppBarTheme(
-          backgroundColor: whiteColor,
+          backgroundColor: lightBackgroundColor,
           elevation: 0,
         ),
       ),
+      home: const GuestHomePage(),
     );
   }
 }
