@@ -47,7 +47,7 @@ class CustomTextButton extends StatelessWidget {
     Key? key,
     required this.title,
     this.width = double.infinity,
-    this.height = 24,
+    this.height = 10,
     this.onPressed,
   }) : super(key: key);
 
@@ -64,7 +64,7 @@ class CustomTextButton extends StatelessWidget {
         child: Text(
           title,
           style: greyTextStayle.copyWith(
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: regular,
           ),
         ),
