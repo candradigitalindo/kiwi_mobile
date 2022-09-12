@@ -110,7 +110,7 @@ class _GuestHomePageState extends State<GuestHomePage> {
           buildBanner(),
           buildMenu(),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           Text(
             "Featured Properties",
@@ -202,6 +202,10 @@ class _GuestHomePageState extends State<GuestHomePage> {
             height: 15,
           ),
           buildSort(),
+          const SizedBox(
+            height: 15,
+          ),
+          buildPropertyNews(),
         ],
       ),
     );
@@ -212,9 +216,7 @@ class _GuestHomePageState extends State<GuestHomePage> {
       options: CarouselOptions(
         viewportFraction: 1,
         autoPlay: true,
-        height: 200,
-        enlargeCenterPage: true,
-        scrollDirection: Axis.horizontal,
+        height: 400,
         initialPage: 0,
       ),
       items: [
@@ -226,21 +228,92 @@ class _GuestHomePageState extends State<GuestHomePage> {
         (i) {
           return Builder(
             builder: (BuildContext context) {
-              return Container(
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(color: Colors.white),
-                child: Container(
-                  margin: const EdgeInsets.only(
-                    top: 2,
-                    bottom: 2,
-                  ),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(i),
-                      fit: BoxFit.cover,
+              // return Container(
+              //   width: MediaQuery.of(context).size.width,
+              //   margin: EdgeInsets.symmetric(horizontal: 5.0),
+              //   decoration: BoxDecoration(color: Colors.white),
+              //   child: Container(
+              //     margin: const EdgeInsets.only(
+              //       top: 2,
+              //       bottom: 2,
+              //     ),
+              //     decoration: BoxDecoration(
+              //       image: DecorationImage(
+              //         image: AssetImage(i),
+              //         fit: BoxFit.cover,
+              //       ),
+              //     ),
+              //   ),
+              // );
+              final Size size = MediaQuery.of(context).size;
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      height: size.width - 10,
+                      width: size.width - 6,
+                      child: Image.asset(
+                        i,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      left: 16,
+                      right: 16,
+                      bottom: 32,
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Container(
+                              height: 120,
+                              color: Colors.white.withOpacity(1),
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  const Text(
+                                    'The Feeling Of Breeze at All Time',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    'Damansara, Sprint Express...',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  const SizedBox(height: 13),
+                                  const Text(
+                                    'SGD \$4,500,800',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            height: 120,
+                            width: 32,
+                            color: Colors.blue.withOpacity(.8),
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              size: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               );
             },
@@ -363,7 +436,7 @@ class _GuestHomePageState extends State<GuestHomePage> {
       options: CarouselOptions(
         viewportFraction: 1,
         autoPlay: true,
-        height: 460,
+        height: 470,
         initialPage: 0,
       ),
       items: [
@@ -376,86 +449,210 @@ class _GuestHomePageState extends State<GuestHomePage> {
           return Builder(
             builder: (BuildContext context) {
               return Container(
-                color: whiteColor,
-                margin: const EdgeInsets.all(2),
+                margin: const EdgeInsets.all(16),
+                decoration: BoxDecoration(color: Colors.white),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
+                    Container(
+                      height: 240,
+                      width: double.infinity,
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 20,
-                      ),
-                      child: Image.asset(i),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(6),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                          horizontal: 8.0, vertical: 16),
+                      child: Stack(
                         children: [
-                          Text(
-                            'An Amazing Sunset View',
-                            style: blackTextStayle.copyWith(
-                              fontSize: 16,
-                              fontWeight: semibold,
+                          Image.asset(
+                            i,
+                            fit: BoxFit.fitWidth,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 4,
+                                    horizontal: 8,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.green[300],
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: const Text(
+                                    'FEATURED',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 4,
+                                        horizontal: 8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.black,
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: const Text(
+                                        'FORSALE',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 4),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 4,
+                                        horizontal: 8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[400],
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: const Text(
+                                        'SALE',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 12)
+                                  ],
+                                )
+                              ],
                             ),
                           ),
-                          const SizedBox(
-                            height: 4,
+                          Positioned(
+                            left: 16,
+                            right: 16,
+                            bottom: 16,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                const Text(
+                                  'SGD \$23,800,800',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    Container(
+                                      margin: const EdgeInsets.only(right: 4),
+                                      padding: const EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(.5),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Icon(
+                                        Icons.favorite_border_outlined,
+                                        color: Colors.white,
+                                        size: 16,
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(right: 4),
+                                      padding: const EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(.5),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Icon(
+                                        Icons.camera_alt_rounded,
+                                        color: Colors.white,
+                                        size: 16,
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(right: 4),
+                                      padding: const EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(.5),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                        size: 16,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          const Text(
+                            'An Amazing Sunset View',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w600),
                           ),
-                          Text(
+                          SizedBox(height: 4),
+                          const Text(
                             'Jalan Utama Kampung Alor Bangsa, Taman Gunung Selamat',
-                            style: greyTextStayle.copyWith(fontSize: 12),
+                            style: TextStyle(fontSize: 12, color: Colors.grey),
                           ),
-                          const SizedBox(
-                            height: 4,
-                          ),
+                          SizedBox(height: 8),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(
+                                  const Text(
                                     'Beds: 6  Baths: 6  sqft: 6000',
-                                    style: greyTextStayle.copyWith(
-                                      fontWeight: semibold,
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  Text(
+                                  const Text(
                                     'Bungalow',
-                                    style: greyTextStayle.copyWith(
-                                      fontWeight: semibold,
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ],
                               ),
                               ElevatedButton(
-                                onPressed: () {},
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(
-                                      'Details',
-                                      style: whiteTextStayle,
-                                    ),
-                                    const SizedBox(
-                                      width: 4,
-                                    ),
-                                    const Icon(
-                                      Icons.arrow_forward_ios,
-                                      size: 12,
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                  onPressed: () {},
+                                  child: Row(
+                                    children: <Widget>[
+                                      const Text('Details'),
+                                      SizedBox(width: 4),
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 12,
+                                      )
+                                    ],
+                                  ))
                             ],
                           ),
                         ],
                       ),
                     ),
-                    Divider(
-                      color: greyColor,
-                    ),
+                    Divider(color: Colors.grey),
                     Padding(
                       padding: const EdgeInsets.all(12),
                       child: Row(
@@ -465,28 +662,28 @@ class _GuestHomePageState extends State<GuestHomePage> {
                             children: <Widget>[
                               Icon(
                                 Icons.person,
-                                color: greyColor,
+                                color: Colors.grey,
                               ),
-                              const SizedBox(
-                                width: 4,
-                              ),
-                              Text(
+                              SizedBox(width: 4),
+                              const Text(
                                 'Ching Ching',
-                                style: greyTextStayle.copyWith(fontSize: 12),
-                              ),
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.grey),
+                              )
                             ],
                           ),
                           Row(
                             children: <Widget>[
                               Icon(
                                 Icons.calendar_month_outlined,
-                                color: greyColor,
+                                color: Colors.grey,
                               ),
-                              const SizedBox(width: 4),
-                              Text(
+                              SizedBox(width: 4),
+                              const Text(
                                 '3 months ago',
-                                style: greyTextStayle.copyWith(fontSize: 12),
-                              ),
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.grey),
+                              )
                             ],
                           ),
                         ],
@@ -736,6 +933,83 @@ class _GuestHomePageState extends State<GuestHomePage> {
                       style: TextStyle(fontSize: 12, color: Colors.grey),
                     )
                   ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPropertyNews() {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: whiteColor,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Property News",
+            style: blackTextStayle.copyWith(
+              fontSize: 16,
+              fontWeight: semibold,
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(1),
+            margin: const EdgeInsets.only(top: 14),
+            decoration: BoxDecoration(
+              color: whiteColor,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(
+                    bottom: 18,
+                  ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/banner1.jpg',
+                        width: 100,
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Most Appreciative Property',
+                              style: blackTextStayle.copyWith(
+                                fontSize: 16,
+                                fontWeight: semibold,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'URA releases flash estimate of 2nd Quarter 2020 private residential property price index',
+                              style: greyTextStayle.copyWith(
+                                fontSize: 14,
+                                fontWeight: regular,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text('Read More'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
